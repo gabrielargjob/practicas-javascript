@@ -11,7 +11,7 @@ botones.forEach(boton => {
       }
 
       if (boton.id === "borrar") {
-        if (pantalla.textContent.length === 1) {
+        if (pantalla.textContent.length === 1 || pantalla.textContent === "Syntax ERROR") {
           pantalla.textContent = "0";
         } else {
           pantalla.textContent = pantalla.textContent.slice(0, -1);
@@ -20,11 +20,15 @@ botones.forEach(boton => {
       }
 
       if (boton.id === "igual") {
+       try {
         pantalla.textContent = eval(pantalla.textContent);
+       } catch {
+        pantalla.textContent = "Syntax ERROR"
+       }
         return;
       }
  
-      if (pantalla.textContent === "0") {
+      if (pantalla.textContent === "0" || pantalla.textContent === "Syntax ERROR") {
           pantalla.textContent = botonApretado;
       } else {
           pantalla.textContent += botonApretado;
